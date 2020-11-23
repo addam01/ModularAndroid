@@ -2,8 +2,7 @@ package com.addam.modularandroidtest
 
 import android.app.Application
 import androidx.lifecycle.LifecycleObserver
-import com.addam.modularandroidtest.di.components.AppComponents
-import com.addam.modularandroidtest.di.components.DaggerAppComponents
+import com.addam.modularandroidtest.di.components.DaggerAppComponent
 import com.github.ajalt.timberkt.Timber
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -15,14 +14,13 @@ import javax.inject.Inject
  */
 open class ModularAndroidApplication: Application(), HasAndroidInjector, LifecycleObserver {
 
-    companion object{
-        lateinit var instance: ModularAndroidApplication
-    }
-
     @Inject
     lateinit var activityDispatcher: DispatchingAndroidInjector<Any>
 
-    lateinit var appComponents: AppComponents
+    companion object{
+        @get:Synchronized
+        lateinit var instance: ModularAndroidApplication
+    }
 
     override fun androidInjector(): AndroidInjector<Any> {
         return activityDispatcher
@@ -33,11 +31,11 @@ open class ModularAndroidApplication: Application(), HasAndroidInjector, Lifecyc
 
         Timber.plant(Timber.DebugTree())
 
-        appComponents = DaggerAppComponents
-            .builder()
+        instance = this
+        DaggerAppComponent.builder()
             .application(this)
-            .context(this)
             .build()
+            .inject(this)
 
 //        appComponents.inject(this)
     }

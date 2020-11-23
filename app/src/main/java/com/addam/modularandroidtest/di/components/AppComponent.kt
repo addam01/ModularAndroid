@@ -1,12 +1,14 @@
 package com.addam.modularandroidtest.di.components
 
 import android.app.Application
-import android.content.Context
 import com.addam.core.NetworkModule
+import com.addam.modularandroidtest.ModularAndroidApplication
 import com.addam.modularandroidtest.di.modules.ActivityBuilder
+import com.addam.modularandroidtest.di.modules.AppModule
 import com.addam.modularandroidtest.di.modules.ViewModelFactoryModules
 import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
 import javax.inject.Singleton
 
 /**
@@ -14,19 +16,17 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [NetworkModule::class, ActivityBuilder::class, ViewModelFactoryModules::class])
-interface AppComponents {
-
-//    fun inject(application: ModularAndroidApplication)
+@Component(modules = [(AndroidInjectionModule::class), (AppModule::class),
+    (NetworkModule::class), (ActivityBuilder::class), (ViewModelFactoryModules::class)])
+interface AppComponent {
 
     @Component.Builder
     interface Builder{
         @BindsInstance
         fun application(application: Application): Builder
 
-        @BindsInstance
-        fun context(context: Context): Builder
+        fun build(): AppComponent
 
-        fun build(): AppComponents
     }
+        fun inject(app: ModularAndroidApplication)
 }
