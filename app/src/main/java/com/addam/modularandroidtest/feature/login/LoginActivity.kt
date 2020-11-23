@@ -1,6 +1,7 @@
 package com.addam.modularandroidtest.feature.login
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -24,5 +25,11 @@ class LoginActivity : AppCompatActivity() {
         val binding: ActivityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.viewModel = viewModel
 
+        setupEvents()
+    }
+
+    private fun setupEvents() {
+        viewModel.data.observe(this,
+            { t -> Toast.makeText(this@LoginActivity, t!!.username, Toast.LENGTH_SHORT).show() })
     }
 }

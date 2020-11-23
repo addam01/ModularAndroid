@@ -29,7 +29,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/username"/>
+                android:hint="@string/username"
+                android:text="@{viewModel.username}"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -44,13 +45,25 @@
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginTop="@dimen/margin_8dp"
             app:passwordToggleEnabled="true">
-
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="@string/password"/>
+                android:hint="@string/password"
+                android:text="@{viewModel.password}"/>
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/txt_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginTop="@dimen/margin_8dp"
+            android:text="@string/login"
+            android:onClick="@{() -> viewModel.onLoginClicked()}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
