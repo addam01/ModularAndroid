@@ -2,6 +2,7 @@ package com.addam.modularandroidtest.di.components
 
 import android.app.Application
 import com.addam.core.NetworkModule
+import com.addam.data.DatabaseModule
 import com.addam.modularandroidtest.ModularAndroidApplication
 import com.addam.modularandroidtest.di.modules.ActivityBuilder
 import com.addam.modularandroidtest.di.modules.AppModule
@@ -17,7 +18,8 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [(AndroidInjectionModule::class), (AppModule::class),
-    (NetworkModule::class), (ActivityBuilder::class), (ViewModelFactoryModules::class)])
+    (NetworkModule::class), (ActivityBuilder::class), (ViewModelFactoryModules::class),
+    (DatabaseModule::class)])
 interface AppComponent {
 
     @Component.Builder
