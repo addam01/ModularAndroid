@@ -30,6 +30,13 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupEvents() {
         viewModel.data.observe(this,
-            { t -> Toast.makeText(this@LoginActivity, t!!.username, Toast.LENGTH_SHORT).show() })
+            { t ->
+//                Toast.makeText(this@LoginActivity, t!!.username, Toast.LENGTH_SHORT).show()
+                viewModel.setUser(t.username, t.password)
+            })
+
+        viewModel.callbackObservable.observe(this, { t->
+            Toast.makeText(this@LoginActivity, t, Toast.LENGTH_SHORT).show()
+        })
     }
 }

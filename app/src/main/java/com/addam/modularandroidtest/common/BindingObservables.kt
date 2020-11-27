@@ -19,7 +19,7 @@ import androidx.databinding.*
 @Suppress("UNCHECKED_CAST")
 private inline fun <T : Observable, R : Any?> T.observe(
     crossinline block: (T) -> R
-): io.reactivex.Observable<R> = io.reactivex.Observable.create { subscriber ->
+): io.reactivex.rxjava3.core.Observable<R> = io.reactivex.rxjava3.core.Observable.create { subscriber ->
     object : Observable.OnPropertyChangedCallback() {
         override fun onPropertyChanged(observable: Observable, id: Int) = try {
             subscriber.onNext(block(observable as T))
