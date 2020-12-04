@@ -58,3 +58,5 @@ An Android test project to implement Modular approach to build structure
         fun inject(app: ModularAndroidApplication)
 }
 ```
+
+Credit to https://github.com/skydoves/Pokedex for inspiration and https://pokeapi.co/docs/v2#info for API
