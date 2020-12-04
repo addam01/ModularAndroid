@@ -4,4 +4,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="pokemon_name">Search By Name</string>
+    <string name="search">Search</string>
+    <string name="pokedex">Pokedex</string>
 </resources>
